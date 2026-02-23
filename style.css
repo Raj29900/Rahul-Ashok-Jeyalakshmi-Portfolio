@@ -1,8 +1,8 @@
 /* ===================== FINAL CSS (PASTE FULL FILE) ===================== */
 
 /* RESET */
-*{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 
 body{
   font-family: Arial, Helvetica, sans-serif;
@@ -10,7 +10,7 @@ body{
   color:#f5f5f5;
 }
 
-/* NAVBAR */
+/* ===================== NAVBAR ===================== */
 .nav{
   position: sticky;
   top: 0;
@@ -23,7 +23,7 @@ body{
   background: rgba(5, 8, 22, 0.92);
   backdrop-filter: blur(14px);
   border-bottom:1px solid rgba(114, 161, 222, 0.3);
-  overflow: visible;
+  overflow: visible; /* allow dropdown */
 }
 
 .logo{ font-size:1.4rem; }
@@ -34,7 +34,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:6px;                 /* desktop spacing */
+  gap: 10px;                 /* ✅ DESKTOP gap between items */
   flex:1;
   min-width:0;
   flex-wrap:nowrap;
@@ -42,7 +42,8 @@ body{
 }
 
 .nav-links a{
-  display:inline-block;
+  display:inline-flex;        /* ✅ removes baseline spacing issues */
+  align-items:center;
   padding:6px 10px;
   color:#f5f5f5;
   text-decoration:none;
@@ -50,7 +51,7 @@ body{
   font-weight:600;
   white-space:nowrap;
   transition: color .3s;
-  line-height: 1.1;
+  line-height: 1;             /* ✅ reduces “font gap” look */
 }
 
 .nav-links a:hover{ color:#72a1de; }
@@ -73,6 +74,7 @@ body{
   overflow: visible;
 }
 
+/* caret (optional) */
 .caret{ font-size:12px; margin-left:4px; }
 
 /* submenu hidden by default via HTML: hidden attribute */
@@ -120,13 +122,14 @@ body{
 /* ===================== TABLET (<=1024px) ===================== */
 @media (max-width: 1024px){
   .nav{ padding: 0.9rem 1.5rem; }
-  .nav-links{ gap: 10px; }
+  .nav-links{ gap: 8px; }
   .nav-links a{ font-size: 0.84rem; padding: 6px 8px; }
 }
 
 /* ===================== MOBILE/TABLET MENU (<=900px) ===================== */
 @media (max-width: 900px){
   .nav{ padding:0.9rem 1.5rem; }
+
   .nav-toggle{ display:block; }
 
   .nav-links{
@@ -141,23 +144,25 @@ body{
     border:1px solid rgba(114, 161, 222, 0.4);
     border-radius:16px;
 
-    display:none;
+    display:none;                 /* hidden until .open */
     flex-direction:column;
     align-items:flex-start;
     justify-content:flex-start;
 
-    gap: 8px;
+    gap: 6px;                     /* ✅ vertical gap between menu items */
     overflow: visible;
   }
 
   .nav-links.open{ display:flex; }
 
+  /* ✅ Controls mobile menu item height (fixes big “font gap”) */
   .nav-links a{
     width:100%;
-    display:block;
-    padding: 10px 12px;
+    display:flex;
+    align-items:center;
+    padding: 8px 12px;            /* ✅ reduce if still too tall */
     margin: 0;
-    line-height: 1.15;
+    line-height: 1;               /* ✅ biggest fix for text spacing */
     font-size: 0.95rem;
   }
 
@@ -168,6 +173,7 @@ body{
     align-items:flex-start;
   }
 
+  /* Make the Projects link span full width on mobile */
   #projectsLink{
     width:100%;
     display:flex;
@@ -175,6 +181,7 @@ body{
     justify-content:space-between;
   }
 
+  /* Submenu becomes inside the mobile menu */
   #projectsSub{
     position:static;
     width:100%;
@@ -184,8 +191,8 @@ body{
   }
 
   #projectsSub a{
-    padding: 10px 12px;
-    line-height: 1.15;
+    padding: 8px 12px;
+    line-height: 1.05;
   }
 }
 
@@ -197,16 +204,16 @@ body{
     right: 1rem;
     width: min(94vw, 360px);
     padding: 12px;
-    gap: 6px;
+    gap: 5px;
   }
 
   .nav-links a{
-    padding: 9px 12px;
+    padding: 8px 12px;
     font-size: 0.92rem;
   }
 }
 
-/* HERO */
+/* ===================== HERO ===================== */
 .hero{
   min-height:90vh;
   display:flex;
@@ -263,7 +270,7 @@ body{
   color:#050816;
 }
 
-/* BUTTONS */
+/* ===================== BUTTONS ===================== */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -283,7 +290,7 @@ body{
 .btn.secondary{ background:transparent; color:#72a1de; }
 .btn:hover{ box-shadow:0 0 15px rgba(114,161,222,0.7); }
 
-/* SECTIONS */
+/* ===================== SECTIONS ===================== */
 .section{ padding:4rem 3rem; }
 
 .section-title{
@@ -355,27 +362,31 @@ body{
   color:#2573d9;
 }
 
+/* Project images (grid version for clean layout) */
 .project-images{
-  display:flex;
+  display:grid;
   gap:1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0.8rem 0;
   align-items:center;
-  justify-content:center;
-  flex-wrap:wrap;
+  justify-items:center;
 }
 
 .project-images img{
-  width:calc(50% - 0.5rem);
+  width:100%;
   max-width:240px;
-  height:auto;
+  height:260px;
   border-radius:12px;
   object-fit:contain;
   background:#fff;
   padding:6px;
+  border:1px solid rgba(114, 161, 222, 0.25);
 }
 
 @media (max-width:600px){
+  .project-images{ grid-template-columns:1fr; }
   .project-images img{
-    width:100%;
+    height:auto;
     max-width:320px;
   }
 }
@@ -472,21 +483,20 @@ img, video{ max-width:100%; height:auto; display:block; }
 
 /* =========================================================
    ✅ PNG -> JPEG LOOK FIX (CSS ONLY)
-   Add class="img-jpeg" to PNG images that look bad.
-   This gives a solid background like a JPEG.
+   Use: class="img-jpeg" OR class="to-jpeg" on PNG images.
    ========================================================= */
-img.img-jpeg{
-  background: #ffffff;                 /* fills transparent areas */
-  padding: 10px;                       /* optional: makes it look cleaner */
-  border-radius: 14px;                 /* smooth edges */
-  border: 1px solid rgba(255,255,255,0.12);
-  display: block;
-  object-fit: contain;
+img.img-jpeg,
+img.to-jpeg{
+  background:#ffffff;
+  padding:10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.12);
+  display:block;
+  object-fit:contain;
 }
 
-/* Optional: if image is in a card and you want it centered */
-img.img-jpeg.center{
-  margin: 0 auto;
+img.img-jpeg.center,
+img.to-jpeg.center{
+  margin:0 auto;
 }
-
 
