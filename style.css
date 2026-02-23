@@ -139,7 +139,7 @@ body{
     justify-content:flex-start;
 
     /* ✅ FINAL: proper font gap between items in mobile menu */
-    gap: 8px;                     /* space between menu items */
+    gap: 6px;                     /* space between menu items */
     overflow: visible;
   }
 
@@ -172,7 +172,7 @@ body{
     position:static;
     width:100%;
     min-width:0;
-    margin-top:6px;
+    margin-top:4px;
     box-shadow:none;
   }
 }
@@ -447,6 +447,7 @@ body{
 
 /* Media safety */
 img, video{ max-width:100%; height:auto; display:block; }
+
 
 
 
