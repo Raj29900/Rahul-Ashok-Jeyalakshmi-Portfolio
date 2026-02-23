@@ -50,7 +50,7 @@ body{
   font-weight:600;
   white-space:nowrap;
   transition: color .3s;
-  line-height: 1.1;        /* ✅ keeps text height consistent */
+  line-height: 1.1;
 }
 
 .nav-links a:hover{ color:#72a1de; }
@@ -120,8 +120,6 @@ body{
 /* ===================== TABLET (<=1024px) ===================== */
 @media (max-width: 1024px){
   .nav{ padding: 0.9rem 1.5rem; }
-
-  /* slightly tighter desktop/tablet bar */
   .nav-links{ gap: 10px; }
   .nav-links a{ font-size: 0.84rem; padding: 6px 8px; }
 }
@@ -129,7 +127,6 @@ body{
 /* ===================== MOBILE/TABLET MENU (<=900px) ===================== */
 @media (max-width: 900px){
   .nav{ padding:0.9rem 1.5rem; }
-
   .nav-toggle{ display:block; }
 
   .nav-links{
@@ -144,26 +141,23 @@ body{
     border:1px solid rgba(114, 161, 222, 0.4);
     border-radius:16px;
 
-    display:none;                 /* hidden until .open */
+    display:none;
     flex-direction:column;
     align-items:flex-start;
     justify-content:flex-start;
 
-    /* ✅ THIS controls the vertical gap between menu items */
     gap: 8px;
-
     overflow: visible;
   }
 
   .nav-links.open{ display:flex; }
 
-  /* ✅ THIS controls each item's height in mobile menu (reduces huge gaps) */
   .nav-links a{
     width:100%;
     display:block;
-    padding: 10px 12px;           /* <-- change to 8px 12px if you want tighter */
+    padding: 10px 12px;
     margin: 0;
-    line-height: 1.15;            /* <-- key to remove “font gap” look */
+    line-height: 1.15;
     font-size: 0.95rem;
   }
 
@@ -181,7 +175,6 @@ body{
     justify-content:space-between;
   }
 
-  /* submenu inside the mobile menu */
   #projectsSub{
     position:static;
     width:100%;
@@ -204,7 +197,7 @@ body{
     right: 1rem;
     width: min(94vw, 360px);
     padding: 12px;
-    gap: 6px;                     /* slightly tighter on phones */
+    gap: 6px;
   }
 
   .nav-links a{
@@ -477,9 +470,23 @@ body{
 /* Media safety */
 img, video{ max-width:100%; height:auto; display:block; }
 
+/* =========================================================
+   ✅ PNG -> JPEG LOOK FIX (CSS ONLY)
+   Add class="img-jpeg" to PNG images that look bad.
+   This gives a solid background like a JPEG.
+   ========================================================= */
+img.img-jpeg{
+  background: #ffffff;                 /* fills transparent areas */
+  padding: 10px;                       /* optional: makes it look cleaner */
+  border-radius: 14px;                 /* smooth edges */
+  border: 1px solid rgba(255,255,255,0.12);
+  display: block;
+  object-fit: contain;
+}
 
-
-
-
+/* Optional: if image is in a card and you want it centered */
+img.img-jpeg.center{
+  margin: 0 auto;
+}
 
 
