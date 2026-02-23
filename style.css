@@ -34,7 +34,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:18px;                 /* ✅ adjust nav spacing here */
+  gap:6px;                 /* ✅ adjust nav spacing here */
   flex:1;
   min-width:0;
   flex-wrap:nowrap;
@@ -137,12 +137,20 @@ body{
     flex-direction:column;
     align-items:flex-start;
     justify-content:flex-start;
-    gap:10px;
 
+    /* ✅ FINAL: proper font gap between items in mobile menu */
+    gap: 8px;                     /* space between menu items */
     overflow: visible;
   }
 
   .nav-links.open{ display:flex; }
+
+  /* ✅ FINAL: reduce each item height so spacing looks clean */
+  .nav-links a{
+    padding: 4px 8px;
+    line-height: 1.25;
+    width: 100%;
+  }
 
   .nav-dropdown{
     width:100%;
@@ -439,4 +447,6 @@ body{
 
 /* Media safety */
 img, video{ max-width:100%; height:auto; display:block; }
+
+
 
