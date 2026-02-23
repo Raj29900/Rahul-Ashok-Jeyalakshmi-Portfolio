@@ -23,7 +23,7 @@ body{
   background: rgba(5, 8, 22, 0.92);
   backdrop-filter: blur(14px);
   border-bottom:1px solid rgba(114, 161, 222, 0.3);
-  overflow: visible; /* allow dropdown */
+  overflow: visible;
 }
 
 .logo{ font-size:1.4rem; }
@@ -34,7 +34,7 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:6px;                 /* ✅ adjust nav spacing here */
+  gap:6px;                 /* desktop spacing */
   flex:1;
   min-width:0;
   flex-wrap:nowrap;
@@ -50,6 +50,7 @@ body{
   font-weight:600;
   white-space:nowrap;
   transition: color .3s;
+  line-height: 1.1;        /* ✅ keeps text height consistent */
 }
 
 .nav-links a:hover{ color:#72a1de; }
@@ -109,51 +110,107 @@ body{
   font-weight:600;
   text-decoration:none;
   white-space:nowrap;
+  line-height: 1.15;
 }
 
 #projectsSub a:hover{
   background: rgba(255,255,255,0.08);
 }
 
-/* RESPONSIVE NAV (mobile/tablet) */
-@media (max-width: 900px){
+/* ===================== TABLET (<=1024px) ===================== */
+@media (max-width: 1024px){
+  .nav{ padding: 0.9rem 1.5rem; }
 
-  /* mobile menu container spacing */
-  .nav-links{
-    gap: 6px !important;          /* ✅ controls space between items */
-    padding: 12px !important;
-  }
-
-  /* mobile menu item spacing */
-  .nav-links a{
-    display: block;
-    width: 100%;
-    margin: 0 !important;         /* ✅ remove any default margins */
-    padding: 10px 12px !important;/* ✅ controls item height */
-    line-height: 1.15 !important; /* ✅ reduces “font gap” feeling */
-    font-size: 0.95rem !important;
-    letter-spacing: 0.5px;        /* optional */
-  }
-
-  /* if PROJECTS is a dropdown trigger, keep it same spacing */
-  #projectsLink{
-    padding: 10px 12px !important;
-  }
+  /* slightly tighter desktop/tablet bar */
+  .nav-links{ gap: 10px; }
+  .nav-links a{ font-size: 0.84rem; padding: 6px 8px; }
 }
-  /* Submenu becomes inside the mobile menu */
+
+/* ===================== MOBILE/TABLET MENU (<=900px) ===================== */
+@media (max-width: 900px){
+  .nav{ padding:0.9rem 1.5rem; }
+
+  .nav-toggle{ display:block; }
+
+  .nav-links{
+    position:absolute;
+    top:62px;
+    right:1.5rem;
+
+    width:min(92vw, 360px);
+    padding:12px;
+
+    background: rgba(5, 8, 22, 0.97);
+    border:1px solid rgba(114, 161, 222, 0.4);
+    border-radius:16px;
+
+    display:none;                 /* hidden until .open */
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-start;
+
+    /* ✅ THIS controls the vertical gap between menu items */
+    gap: 8px;
+
+    overflow: visible;
+  }
+
+  .nav-links.open{ display:flex; }
+
+  /* ✅ THIS controls each item's height in mobile menu (reduces huge gaps) */
+  .nav-links a{
+    width:100%;
+    display:block;
+    padding: 10px 12px;           /* <-- change to 8px 12px if you want tighter */
+    margin: 0;
+    line-height: 1.15;            /* <-- key to remove “font gap” look */
+    font-size: 0.95rem;
+  }
+
+  .nav-dropdown{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  #projectsLink{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  /* submenu inside the mobile menu */
   #projectsSub{
     position:static;
     width:100%;
     min-width:0;
-    margin-top:4px;
+    margin-top:6px;
     box-shadow:none;
+  }
+
+  #projectsSub a{
+    padding: 10px 12px;
+    line-height: 1.15;
   }
 }
 
-/* Optional: tighten a bit on mid screens */
-@media (max-width: 1100px){
-  .nav-links{ gap:12px; }
-  .nav-links a{ font-size:0.82rem; padding:6px 8px; }
+/* ===================== PHONE (<=600px) ===================== */
+@media (max-width:600px){
+  .nav{ padding:0.9rem 1rem; }
+
+  .nav-links{
+    right: 1rem;
+    width: min(94vw, 360px);
+    padding: 12px;
+    gap: 6px;                     /* slightly tighter on phones */
+  }
+
+  .nav-links a{
+    padding: 9px 12px;
+    font-size: 0.92rem;
+  }
 }
 
 /* HERO */
@@ -411,7 +468,6 @@ body{
 }
 
 @media (max-width:600px){
-  .nav{ padding:0.9rem 1rem; }
   .section{ padding:3rem 1.5rem; }
   .hero h2{ font-size:2.1rem; }
   .hero-sub{ font-size:0.95rem; }
@@ -420,6 +476,8 @@ body{
 
 /* Media safety */
 img, video{ max-width:100%; height:auto; display:block; }
+
+
 
 
 
